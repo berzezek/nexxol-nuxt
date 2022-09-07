@@ -47,29 +47,80 @@ export default {
       {
         src: 'js/scripts.js',
       },
-
+      
     ],
   },
-
+  
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
     '@/static/css/styles.css'
   ],
-
-
-
+  
+  
+  
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [],
-
+  
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [],
-
+  
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: ['@nuxtjs/axios'],
+  modules: [
+    '@nuxtjs/axios',
+    '@nuxtjs/axios',
+    '@nuxtjs/auth-next'
+  ],
 
+  privateRuntimeConfig: {
+    baseUrl: 'http://localhost:8000/api/v1/'
+  },
+  
+  publicRuntimeConfig: {
+    baseUrl: process.env.BASE_URL || 'http://nexxol.uz/api/v1/'
+  },
+  
+  // auth: {
+  //   strategies: {
+  //     local: {
+  //       token: {
+  //         property: 'token',
+  //         global: true,
+  //         // required: true,
+  //         type: 'Token'
+  //       },
+  //       user: {
+  //         property: 'user',
+  //         // autoFetch: true
+  //       },
+  //       endpoints: {
+  //         login: { url: `http://localhost:8000/api/auth/token/login/`, method: 'post' },
+  //         // logout: { url: '/api/auth/logout', method: 'post' },
+  //         // user: { url: '/api/auth/user', method: 'get' }
+  //       }
+  //     }
+  //   }
+  // },
+  auth: {
+    strategies: {
+      cookie: {
+        cookie: {
+          // (optional) If set, we check this cookie existence for loggedIn check
+          name: 'X-CSRFTOKEN',
+        },
+        endpoints: {
+          csrf: {
+            url: '',
+          },
+          login: { url: `http://localhost:8000/api/auth/token/login/`, method: 'post' },
+          // (optional) If set, we send a get request to this endpoint before login
+        }
+      },
+    }
+  },
+  
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {}
 }
