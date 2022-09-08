@@ -1,5 +1,6 @@
 <template>
   <div class="product-container">
+    
     <div class="product-list">
       <!-- Section-->
       <section class="py-5">

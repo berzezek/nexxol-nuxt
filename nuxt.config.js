@@ -70,7 +70,6 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     '@nuxtjs/axios',
-    '@nuxtjs/axios',
     '@nuxtjs/auth-next'
   ],
 
@@ -82,42 +81,24 @@ export default {
     baseUrl: process.env.BASE_URL || 'http://nexxol.uz/api/v1/'
   },
   
-  // auth: {
-  //   strategies: {
-  //     local: {
-  //       token: {
-  //         property: 'token',
-  //         global: true,
-  //         // required: true,
-  //         type: 'Token'
-  //       },
-  //       user: {
-  //         property: 'user',
-  //         // autoFetch: true
-  //       },
-  //       endpoints: {
-  //         login: { url: `http://localhost:8000/api/auth/token/login/`, method: 'post' },
-  //         // logout: { url: '/api/auth/logout', method: 'post' },
-  //         // user: { url: '/api/auth/user', method: 'get' }
-  //       }
-  //     }
-  //   }
-  // },
   auth: {
     strategies: {
-      cookie: {
-        cookie: {
-          // (optional) If set, we check this cookie existence for loggedIn check
-          name: 'X-CSRFTOKEN',
+      local: {
+        token: {
+          required: true,
+          type: 'Token',
+          maxAge: 10000,
+          global: true
+        },
+        user: {
+          property: 'user'
         },
         endpoints: {
-          csrf: {
-            url: '',
-          },
-          login: { url: `http://localhost:8000/api/auth/token/login/`, method: 'post' },
-          // (optional) If set, we send a get request to this endpoint before login
+          login: { url: 'http://localhost:8000/api/v1/auth/token/login', method: 'post' },
+          user: { url: 'http://localhost:8000/api/v1/auth/users/me/', method: 'get' }
+
         }
-      },
+      }
     }
   },
   

@@ -1,5 +1,8 @@
 <template>
   <div>
+    <button @click="getUser">GetUser</button>
+    User:
+    <pre>{{ user.username }}</pre>
     <form @submit.prevent="userLogin">
       <div>
         <label>Username</label>
@@ -25,15 +28,28 @@ export default {
         username: "",
         password: "",
       },
+      user: '',
     };
   },
   methods: {
     async userLogin() {
       try {
-        let response = await this.$auth.loginWith("cookie", {
+        let response = await this.$auth.loginWith("local", {
           data: this.login,
         });
         console.log(response);
+        window.localStorage.setItem("token", this.$auth.token);
+      } catch (err) {
+        console.log(err);
+      }
+    },
+    async getUser() {
+      try {
+        console.log("login");
+        this.$axios.setHeader('Authorization', `Token ${window.localStorage.token}`)
+
+        const user = await this.$axios.$get(`http://localhost:8000/api/v1/auth/users/me/`);
+        this.user = user;
       } catch (err) {
         console.log(err);
       }
