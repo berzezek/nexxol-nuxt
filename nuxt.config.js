@@ -47,40 +47,48 @@ export default {
       {
         src: 'js/scripts.js',
       },
-      
+
     ],
   },
-  
+
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
     '@/static/css/styles.css'
   ],
-  
-  
-  
+
+
+
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [],
-  
+
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [],
-  
+
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
+    'nuxt-izitoast',
+    '@nuxtjs/toast',
     '@nuxtjs/axios',
     '@nuxtjs/auth-next'
   ],
 
+  izitoast: {
+    position: 'topRight',
+    transitionIn: 'bounceInLeft',
+    transitionOut: 'fadeOutRight',
+  },
+
   privateRuntimeConfig: {
     baseUrl: 'http://localhost:8000/api/v1/'
   },
-  
+
   publicRuntimeConfig: {
     baseUrl: process.env.BASE_URL || 'http://nexxol.uz/api/v1/'
   },
-  
+
   auth: {
     strategies: {
       local: {
@@ -88,20 +96,38 @@ export default {
           required: true,
           type: 'Token',
           maxAge: 10000,
-          global: true
+          global: true,
+          property: 'auth_token'
         },
         user: {
-          property: 'user'
+          property: ''
         },
         endpoints: {
-          login: { url: 'http://localhost:8000/api/v1/auth/token/login', method: 'post' },
-          user: { url: 'http://localhost:8000/api/v1/auth/users/me/', method: 'get' }
+          login: {
+            url: 'http://localhost:8000/api/v1/auth/token/login/',
+            method: 'post'
+          },
+          user: {
+            url: 'http://localhost:8000/api/v1/auth/users/me/',
+            method: 'get'
+          },
+          logout: {
+            url: 'http://localhost:8000/api/v1/auth/token/logout/',
+            method: 'post'
+          },
+          tokenRequired: true,
+          tokenType: 'Token',
+          tokenName: 'Authorization'
 
         }
       }
     }
   },
-  
+
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {}
+  build: {},
+
+  router: {
+    linkActiveClass: 'active-link'
+  }
 }

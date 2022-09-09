@@ -1,12 +1,16 @@
 <template>
   <div>
-    <Nuxt />
+    <MainHeader />
+
+    <div class="dashboard" >
+      <Nuxt />
+    </div>
   </div>
 </template>
 
 <style scoped>
-div {
-  padding: 2%;
+.dashboard {
+  min-width: 80%;
   position: absolute;
   top: 50%;
   left: 50%;

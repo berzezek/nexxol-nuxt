@@ -12,13 +12,13 @@
         aria-expanded="false"
         aria-label="Toggle navigation"
       >
-        Menu
+        Меню
         <i class="fas fa-bars"></i>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
-            <NuxtLink :to="('/#about')"><a class="nav-link" href="#about">About</a></NuxtLink>
+            <NuxtLink :to="('/#about')"><a class="nav-link nav-link" href="#about">О нас</a></NuxtLink>
           </li>
           <li class="nav-item">
             <NuxtLink :to="('/products')"><a class="nav-link">Продукты</a></NuxtLink>
@@ -31,3 +31,9 @@
     </div>
   </nav>
 </template>
+
+<style>
+  .nav-link {
+    text-decoration: none !important;
+  }
+</style>

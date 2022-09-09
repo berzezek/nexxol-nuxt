@@ -21,7 +21,7 @@
         <h5 class="fw-bolder text-decoration-none">{{ product.name }}</h5>
         <!-- Product price-->
         <div v-if="product.discount > 0">
-          <span class="text-muted text-decoration-line-through">{{
+          <span class="text-muted text-decoration-line-through sm">{{
             beautyPrice(product.price)
           }}</span
           ><span> {{ beautyPrice(product.discount_price) }} сум</span>
