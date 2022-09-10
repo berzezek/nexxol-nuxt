@@ -9,7 +9,7 @@
             class="row gx-4 gx-lg-5 row-cols-1 row-cols-md-3 row-cols-xl-4 justify-content-center"
           >
             <div class="col mb-5" v-for="product in products" :key="product.id">
-              <NuxtLink :to="product.id.toString()">
+              <NuxtLink :to="(`/products/${product.id}/`)">
                 <ProductCard :product="product" />
               </NuxtLink>
             </div>
@@ -21,12 +21,7 @@
 </template>
 
 <style scoped>
-.product-container {
-  min-height: 100%;
-}
-.product-list {
-  margin: 5rem;
-}
+
 </style>
 
 <script>

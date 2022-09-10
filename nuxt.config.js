@@ -45,7 +45,22 @@ export default {
         defer: true
       },
       {
-        src: 'js/scripts.js',
+        src: 'https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js',
+        async: true,
+        defer: true
+      },
+      {
+        src: 'https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js',
+        async: true,
+        defer: true
+      },
+      // {
+      //   src: 'assets/js/scripts.js',
+      //   type: 'module'
+      // },
+      {
+        src: 'https://code.jquery.com/jquery-3.6.0.min.js',
+        async: true
       },
 
     ],
@@ -65,10 +80,13 @@ export default {
   components: true,
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
-  buildModules: [],
+  buildModules: [
+    // '@nuxtjs/eslint-module'
+  ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
+    'bootstrap-vue/nuxt',
     'nuxt-izitoast',
     '@nuxtjs/toast',
     '@nuxtjs/axios',
@@ -82,20 +100,20 @@ export default {
   },
 
   privateRuntimeConfig: {
-    baseUrl: 'http://localhost:8000/api/v1/'
+    baseUrl: process.env.BASE_URL
   },
 
   publicRuntimeConfig: {
-    baseUrl: process.env.BASE_URL || 'http://nexxol.uz/api/v1/'
+    baseUrl: 'http://nexxol.uz/api/v1/'
   },
 
   auth: {
     strategies: {
       local: {
         token: {
-          required: true,
+          required: true,   
           type: 'Token',
-          maxAge: 10000,
+          maxAge: 60*60*24*365,
           global: true,
           property: 'auth_token'
         },
@@ -104,15 +122,15 @@ export default {
         },
         endpoints: {
           login: {
-            url: 'http://localhost:8000/api/v1/auth/token/login/',
+            url: 'http://nexxol.uz/api/v1/auth/token/login/',
             method: 'post'
           },
           user: {
-            url: 'http://localhost:8000/api/v1/auth/users/me/',
+            url: 'http://nexxol.uz/api/v1/auth/users/me/',
             method: 'get'
           },
           logout: {
-            url: 'http://localhost:8000/api/v1/auth/token/logout/',
+            url: 'http://nexxol.uz/api/v1/auth/token/logout/',
             method: 'post'
           },
           tokenRequired: true,

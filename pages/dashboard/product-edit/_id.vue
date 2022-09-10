@@ -1,25 +1,5 @@
 <template>
-  <div class="mt-5">
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
+  <div class="container">
     <h3 class="text-center mt-5">Изменить продукт {{ product.name }}</h3>
     <form
       @submit.prevent
@@ -187,9 +167,9 @@
         >
       </div>
 
-      <!-- <button class="btn btn-primary me-3" @click="editProduct">
+      <button class="btn btn-primary me-3" @click="editProduct">
         Сохранить
-      </button> -->
+      </button>
 
       <button class="btn btn-primary" @click="$router.go(-1)">Назад</button>
     </form>
@@ -198,17 +178,33 @@
 
 <script>
 export default {
-  layout: "dashboard",
+  layout: 'dashboard',
   data() {},
   async asyncData({ $axios, params, $config: { baseUrl } }) {
-    const product = await $axios.$get(`${baseUrl}product/${params.edit}/`);
+    const product = await $axios.$get(`${baseUrl}product/${params.id}/`);
     return { product };
   },
+  methods: {
+    async editProduct() {
+      console.log(this.$route.params.id)
+
+      // await $axios.put(`${baseUrl}product/${this.$route.params.id}`)
+    }
+  }
 };
 </script>
 
 <style scoped>
 .img-default {
   width: 10%;
+}
+
+.dashboard {
+  min-width: 80%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
 }
 </style>

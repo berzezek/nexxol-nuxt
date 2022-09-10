@@ -1,6 +1,7 @@
 <template>
   <div id="page-top">
-    <MainHeader />
+    <SecondaryHeader />
+    <!-- <MainHeader /> -->
     <Nuxt />
     <MainFooter />
   </div>

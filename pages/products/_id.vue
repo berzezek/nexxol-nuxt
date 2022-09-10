@@ -83,7 +83,7 @@
 export default {
   async asyncData({ $axios, params, $config: { baseUrl } }) {
     const product = await $axios.$get(
-      `${baseUrl}product/${params.productDetail}/`
+      `${baseUrl}product/${params.id}/`
     );
     return { product };
   },
@@ -99,11 +99,10 @@ export default {
 
 <style>
 .product-container {
-  height: 50rem;
+  height: 65rem;
   position: relative;
 }
 .product-detail {
-  margin: 0;
   position: absolute;
   top: 50%;
   left: 50%;

@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+  <div class="container">
     <h3 class="text-center my-5">Панель управления</h3>
 
     <table class="table table-striped table-hover">
@@ -16,7 +16,7 @@
           v-for="product in allProducts"
           :key="product.id"
           @click="
-            $router.push({ path: `/dashboard/product-edit/${product.id.toString()}`, params: { id: product.id } })
+            $router.push({ path: `/dashboard/product-edit/${product.id}`})
           "
         >
           <td>
@@ -55,7 +55,8 @@
 export default {
   layout: "dashboard",
   async asyncData({ $axios, $config: { baseUrl } }) {
-    const allProducts = await $axios.$get(`${baseUrl}product/`);
+    const allProducts = await $axios.$get(`http://nexxol.uz/api/v1/product/`);
+    console.log(allProducts)
     return { allProducts };
   },
 };
