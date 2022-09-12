@@ -27,13 +27,16 @@
             <b-dropdown-item href="#">FA</b-dropdown-item>
           </b-nav-item-dropdown> -->
           <b-navbar-nav class="ml-auto">
-              <b-form-input
-                size="sm"
-                class="mr-sm-2"
-                placeholder="Поиск"
-                @submit.prevent
-              ></b-form-input>
-              <!-- <b-button size="sm" class="my-2 my-sm-0" type="submit"
+            <b-form-input
+              size="sm"
+              class="mr-sm-2"
+              placeholder="Поиск"
+              @submit.prevent
+              v-model="searchQuery"
+              @change="searchProduct"
+            ></b-form-input>
+            <!-- <button @click="searchProduct">nice</button> -->
+            <!-- <b-button size="sm" class="my-2 my-sm-0" type="submit"
               >Search</b-button
             > -->
             <b-navbar-nav>
@@ -41,8 +44,7 @@
                 ><NuxtLink to="/products">Продукты</NuxtLink></b-nav-item
               >
             </b-navbar-nav>
-            <b-nav-form v-if="$route.path === '/products'">
-            </b-nav-form>
+            <b-nav-form v-if="$route.path === '/products'"> </b-nav-form>
             <b-nav-item-dropdown right v-if="$auth.user">
               <!-- Using 'button-content' slot -->
               <template #button-content>
@@ -60,6 +62,11 @@
 
 <script>
 export default {
+  data() {
+    return {
+      searchQuery: "",
+    };
+  },
   methods: {
     async signOut() {
       this.$auth.logout();
@@ -69,9 +76,11 @@ export default {
       });
       this.$router.push("/");
     },
+    searchProduct() {
+      $nuxt.$emit('searchProduct', this.searchQuery)
+    }
   },
 };
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

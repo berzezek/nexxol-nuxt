@@ -1,7 +1,7 @@
 <template>
   <div>
     <SecondaryHeader />
-    <div class="content" >
+    <div class="content">
       <Nuxt />
     </div>
   </div>
