@@ -21,7 +21,9 @@
 </template>
 
 <style scoped>
-
+  .product-container {
+    min-height: 100%;
+  }
 </style>
 
 <script>
