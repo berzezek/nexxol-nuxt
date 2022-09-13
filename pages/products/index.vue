@@ -1,13 +1,22 @@
 <template>
   <div class="product-container">
+    
     <div class="product-list">
       <!-- Section-->
       <section class="py-5">
         <div class="container px-lg-5 mt-5">
+        <b-form-input
+          size="sm"
+          class="mb-5 w-25"
+          placeholder="Поиск"
+          @submit.prevent
+          v-model="searchQuery"
+          @change="searchProduct"
+        ></b-form-input>
           <div
             class="row gx-4 gx-lg-5 row-cols-1 row-cols-md-3 row-cols-xl-4 justify-content-center"
           >
-            <div class="col mb-5" v-for="product in products" :key="product.id">
+            <div class="col mb-5" v-for="product in searchProducts" :key="product.id">
               <NuxtLink :to="`/products/${product.id}/`">
                 <ProductCard :product="product" />
               </NuxtLink>
@@ -27,9 +36,7 @@
 
 <script>
 export default {
-  props: {
-    search: String,
-  },
+
   data() {
     return {
       searchQuery: "",
@@ -41,19 +48,21 @@ export default {
     return { products };
   },
   methods: {
-    // searchedProducts() {
-    //   return this.products.filter((p) =>
-    //     p.name.toLowerCase().includes(this.searchQuery.toLowerCase())
-    //   );
-    // },
+    searchProduct() {
+      return this.products.filter((p) =>
+        p.name.toLowerCase().includes(this.searchQuery.toLowerCase())
+      );
+    },
   },
-  mounted() {
-    console.log(this.$props.search);
-  },
-  // watch: {
-  //   search() {
-  //     console.log(this.search)
-  //   }
+  // mounted() {
+  //   console.log(this.$props.search);
   // },
+  computed: {
+    searchProducts() {
+      return this.products.filter((p) =>
+        p.name.toLowerCase().includes(this.searchQuery.toLowerCase())
+      );
+    },
+  },
 };
 </script>

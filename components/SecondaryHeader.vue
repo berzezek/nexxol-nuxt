@@ -27,14 +27,14 @@
             <b-dropdown-item href="#">FA</b-dropdown-item>
           </b-nav-item-dropdown> -->
           <b-navbar-nav class="ml-auto">
-            <b-form-input
+            <!-- <b-form-input
               size="sm"
               class="mr-sm-2"
               placeholder="Поиск"
               @submit.prevent
               v-model="searchQuery"
               @change="searchProduct"
-            ></b-form-input>
+            ></b-form-input> -->
             <!-- <button @click="searchProduct">nice</button> -->
             <!-- <b-button size="sm" class="my-2 my-sm-0" type="submit"
               >Search</b-button
@@ -76,9 +76,9 @@ export default {
       });
       this.$router.push("/");
     },
-    searchProduct() {
-      $nuxt.$emit('searchProduct', this.searchQuery)
-    }
+    // searchProduct() {
+    //   $nuxt.$emit('searchProduct', this.searchQuery)
+    // }
   },
 };
 </script>
