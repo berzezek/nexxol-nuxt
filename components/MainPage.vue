@@ -99,10 +99,9 @@
                 <div
                   class="project-text w-100 my-auto text-center text-lg-left"
                 >
-                  <h4 class="text-white">Misty</h4>
+                  <h4 class="text-white">Цена</h4>
                   <p class="mb-0 text-white-50">
-                    An example of where you can put an image of a project, or
-                    anything else, along with a description.
+                    Лучшее соотношение цены и качества.
                   </p>
                   <hr class="d-none d-lg-block mb-0 ms-0" />
                 </div>
@@ -125,11 +124,9 @@
                 <div
                   class="project-text w-100 my-auto text-center text-lg-right"
                 >
-                  <h4 class="text-white">Mountains</h4>
+                  <h4 class="text-white">Качество</h4>
                   <p class="mb-0 text-white-50">
-                    Another example of a project with its respective
-                    description. These sections work well responsively as well,
-                    try this theme on a small screen!
+                    Наша продукция обладает высокими качествами.
                   </p>
                   <hr class="d-none d-lg-block mb-0 me-0" />
                 </div>

@@ -62,5 +62,10 @@ export default {
       );
     },
   },
+  head() {
+    return {
+      title: 'Продукты'
+    }
+  }
 };
 </script>

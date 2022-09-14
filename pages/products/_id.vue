@@ -104,6 +104,11 @@ export default {
         .replace(/\B(?=(\d{3})+(?!\d))/g, " ");
     },
   },
+  head() {
+    return {
+      title: `${this.product.name} - ${this.product.product_mark}`
+    }
+  }
 };
 </script>
 

@@ -104,7 +104,7 @@ export default {
   },
 
   publicRuntimeConfig: {
-    baseUrl: 'http://nexxol.uz/api/v1/'
+    baseUrl: 'http://nexxolapi.cn73530.tmweb.ru/api/v1/'
   },
 
   auth: {
