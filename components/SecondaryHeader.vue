@@ -2,13 +2,13 @@
   <div>
     <b-navbar toggleable="md">
       <div class="container">
-        <b-navbar-brand
-          ><NuxtLink to="/"
+        <NuxtLink to="/"
+          ><b-navbar-brand
             ><img
               src="@/static/assets/img/logo.png"
               alt="NEXXOL"
-              width="150px" /></NuxtLink
-        ></b-navbar-brand>
+              width="150px" /></b-navbar-brand
+        ></NuxtLink>
 
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
@@ -40,11 +40,11 @@
               >Search</b-button
             > -->
             <b-navbar-nav>
-              <b-nav-item
-                ><NuxtLink to="/products">Продукты</NuxtLink></b-nav-item
-              >
+              <b-nav-item><NuxtLink to="/#about">О нас</NuxtLink></b-nav-item>
+              <b-nav-item><NuxtLink to="/#contacts">Контакты</NuxtLink></b-nav-item>
+              <b-nav-item><NuxtLink to="/products">Продукты</NuxtLink></b-nav-item>
             </b-navbar-nav>
-            <b-nav-form v-if="$route.path === '/products'"> </b-nav-form>
+            <b-nav-form v-if="$route.path === '/dashboard'"> </b-nav-form>
             <b-nav-item-dropdown right v-if="$auth.user">
               <!-- Using 'button-content' slot -->
               <template #button-content>

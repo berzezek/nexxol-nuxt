@@ -1,13 +1,13 @@
 <template>
   <div class="product-container">
     
-    <div class="product-list">
+    <div class="">
       <!-- Section-->
       <section class="py-5">
         <div class="container px-lg-5 mt-5">
         <b-form-input
           size="sm"
-          class="mb-5 w-25"
+          class="mb-5 w-50"
           placeholder="Поиск"
           @submit.prevent
           v-model="searchQuery"
@@ -29,9 +29,7 @@
 </template>
 
 <style scoped>
-.product-container {
-  min-height: 100%;
-}
+
 </style>
 
 <script>

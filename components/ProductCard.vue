@@ -2,7 +2,7 @@
   <div class="card h-100">
     <!-- Sale badge-->
     <div
-      class="badge bg-dark text-white position-absolute"
+      class="badge bg-primary text-white position-absolute"
       style="top: 0.5rem; right: 0.5rem"
       v-if="product.discount > 0"
     >
@@ -10,8 +10,15 @@
     </div>
     <!-- Product image-->
     <img
+      v-if="!product.image_1"
       class="card-img-top"
       :src="product.get_thumbnail"
+      :alt="product.name"
+    />
+    <img
+      v-else
+      class="card-img-top"
+      :src="product.image_1"
       :alt="product.name"
     />
     <!-- Product details-->
@@ -54,9 +61,15 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .card:hover {
   box-shadow: 10px 5px 0px 0px #aaaaaa;
   transition: 1s;
 }
+img {
+  min-height: 60%;
+  max-height: 60%;
+}
+
+
 </style>

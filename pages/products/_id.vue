@@ -7,8 +7,15 @@
           <div class="row gx-4 gx-lg-5 align-items-center">
             <div class="col-md-6">
               <img
+                v-if="!product.image_1"
                 class="card-img-top mb-5 mb-md-0"
                 :src="product.get_thumbnail"
+                :alt="product.name"
+              />
+              <img
+                v-else
+                class="card-img-top mb-5 mb-md-0"
+                :src="product.image_1"
                 :alt="product.name"
               />
             </div>
@@ -20,6 +27,9 @@
               <p class="lead">
                 {{ product.description }}
               </p>
+              <div class="text-primary mb-3" v-if="product.discount">
+                На данную продукция действует акция: <span class="fw-bolder">-{{ product.discount }}%</span>
+              </div>
               <div class="small mb-1">
                 Объём: <span class="fw-bolder">{{ product.unit }}</span>
               </div>
@@ -98,15 +108,5 @@ export default {
 </script>
 
 <style>
-.product-container {
-  height: 65rem;
-  position: relative;
-}
-.product-detail {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  margin-right: -50%;
-  transform: translate(-50%, -50%);
-}
+
 </style>
