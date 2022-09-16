@@ -28,7 +28,8 @@
                 {{ product.description }}
               </p>
               <div class="text-primary mb-3" v-if="product.discount">
-                На данную продукция действует акция: <span class="fw-bolder">-{{ product.discount }}%</span>
+                На данную продукция действует акция:
+                <span class="fw-bolder">-{{ product.discount }}%</span>
               </div>
               <div class="small mb-1">
                 Объём: <span class="fw-bolder">{{ product.unit }}</span>
@@ -39,9 +40,10 @@
 
               <div class="d-flex">
                 <div class="fs-5 mb-5" v-if="product.discount > 0">
-                  <span class="text-decoration-line-through">{{
-                    beautyPrice(product.price)
-                  }}</span>
+                  <span
+                    class="text-decoration-line-through fw-normal text-primary"
+                    >{{ beautyPrice(product.price) }}</span
+                  >
                   <span>{{ beautyPrice(product.discount_price) }} сум</span>
                 </div>
                 <div class="fs-5 mb-5" v-else>
@@ -92,9 +94,7 @@
 <script>
 export default {
   async asyncData({ $axios, params, $config: { baseUrl } }) {
-    const product = await $axios.$get(
-      `${baseUrl}product/${params.id}/`
-    );
+    const product = await $axios.$get(`${baseUrl}product/${params.id}/`);
     return { product };
   },
   methods: {
@@ -106,12 +106,14 @@ export default {
   },
   head() {
     return {
-      title: `${this.product.name} - ${this.product.product_mark}`
-    }
-  }
+      title: `${this.product.name} - ${this.product.product_mark}`,
+    };
+  },
 };
 </script>
 
-<style>
-
+<style scoped>
+.old-price {
+  font-weight: 400;
+}
 </style>

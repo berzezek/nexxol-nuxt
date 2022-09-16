@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-navbar toggleable="md">
+    <b-navbar toggleable="md" class="header">
       <div class="container">
         <NuxtLink to="/"
           ><b-navbar-brand
@@ -40,9 +40,17 @@
               >Search</b-button
             > -->
             <b-navbar-nav>
-              <b-nav-item><NuxtLink to="/#about">О нас</NuxtLink></b-nav-item>
-              <b-nav-item><NuxtLink to="/#contacts">Контакты</NuxtLink></b-nav-item>
-              <b-nav-item><NuxtLink to="/products">Продукты</NuxtLink></b-nav-item>
+              <b-nav-item v-for="nav in navLink" :key="nav.to"
+                ><NuxtLink :to="nav.to" class="fw-bolder">{{
+                  nav.title
+                }}</NuxtLink></b-nav-item
+              >
+              <!-- <b-nav-item
+                ><NuxtLink to="#contacts">Контакты</NuxtLink></b-nav-item
+              >
+              <b-nav-item
+                ><NuxtLink to="/products">Продукты</NuxtLink></b-nav-item
+              > -->
             </b-navbar-nav>
             <b-nav-form v-if="$route.path === '/dashboard'"> </b-nav-form>
             <b-nav-item-dropdown right v-if="$auth.user">
@@ -67,6 +75,9 @@ export default {
       searchQuery: "",
     };
   },
+  props: {
+    navLink: Array,
+  },
   methods: {
     async signOut() {
       this.$auth.logout();
@@ -83,4 +94,21 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.header {
+  background-color: rgba(255, 255, 255, 0.6);
+  position: fixed;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+}
+
+.header:hover {
+  background-color: rgb(255, 255, 255);
+  transition: 1s;
+}
+
+a {
+  text-decoration: none;
+}
+</style>

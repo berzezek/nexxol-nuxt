@@ -1,22 +1,25 @@
 <template>
   <div class="product-container">
-    
     <div class="">
       <!-- Section-->
       <section class="py-5">
         <div class="container px-lg-5 mt-5">
-        <b-form-input
-          size="sm"
-          class="mb-5 w-50"
-          placeholder="Поиск"
-          @submit.prevent
-          v-model="searchQuery"
-          @change="searchProduct"
-        ></b-form-input>
+          <b-form-input
+            size="sm"
+            class="mb-5 w-50 search-product"
+            placeholder="Поиск"
+            @submit.prevent
+            v-model="searchQuery"
+            @change="searchProduct"
+          ></b-form-input>
           <div
             class="row gx-4 gx-lg-5 row-cols-1 row-cols-md-3 row-cols-xl-4 justify-content-center"
           >
-            <div class="col mb-5" v-for="product in searchProducts" :key="product.id">
+            <div
+              class="col mb-5"
+              v-for="product in searchProducts"
+              :key="product.id"
+            >
               <NuxtLink :to="`/products/${product.id}/`">
                 <ProductCard :product="product" />
               </NuxtLink>
@@ -29,12 +32,18 @@
 </template>
 
 <style scoped>
+a {
+  text-decoration: none;
+}
 
+.search-product:hover {
+  box-shadow: 10px 5px 0px 0px #aaaaaa;
+  transition: 1s;
+}
 </style>
 
 <script>
 export default {
-
   data() {
     return {
       searchQuery: "",
@@ -64,8 +73,8 @@ export default {
   },
   head() {
     return {
-      title: 'Продукты'
-    }
-  }
+      title: "Продукты",
+    };
+  },
 };
 </script>

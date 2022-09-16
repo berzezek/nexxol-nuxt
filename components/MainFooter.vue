@@ -11,10 +11,10 @@
             >
               <div class="card py-4 h-100">
                 <div class="card-body text-center">
-                  <i class="fas fa-map-marked-alt text-primary mb-2"></i>
+                  <i class="fas fa-map-marked-alt mb-2"></i>
                   <h4 class="text-uppercase m-0">Наш адрес</h4>
                   <hr class="my-4 mx-auto" />
-                  <div class="small text-black-50">
+                  <div class="small">
                     Республика Узбекистан, г.Ташкент, Юнусабадский район, массив
                     Киет 56А
                   </div>
@@ -24,18 +24,16 @@
           </div>
           <div class="col-md-4 mb-3 mb-md-0">
             <a
-              href="mailto:info@b-oil.uz"
+              href="mailto:o.fahritdinova@yandex.ru"
               target="_blank"
               class="text-decoration-none"
             >
               <div class="card py-4 h-100">
                 <div class="card-body text-center">
-                  <i class="fas fa-envelope text-primary mb-2"></i>
+                  <i class="fas fa-envelope mb-2"></i>
                   <h4 class="text-uppercase m-0">E-mail</h4>
                   <hr class="my-4 mx-auto" />
-                  <div class="small text-black-50">
-                    <a href="#!">o.fahritdinova@yandex.ru</a>
-                  </div>
+                  <div class="small">o.fahritdinova@yandex.ru</div>
                 </div>
               </div>
             </a>
@@ -44,10 +42,10 @@
             <div class="card py-4 h-100">
               <a href="tel:+998954100300" class="text-decoration-none">
                 <div class="card-body text-center">
-                  <i class="fas fa-mobile-alt text-primary mb-2"></i>
+                  <i class="fas fa-mobile-alt mb-2"></i>
                   <h4 class="text-uppercase m-0">Телефон</h4>
                   <hr class="my-4 mx-auto" />
-                  <div class="small text-black-50">+998 (95) 410-0300</div>
+                  <div class="small">+998 (95) 410-0300</div>
                 </div>
               </a>
             </div>

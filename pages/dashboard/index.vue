@@ -35,10 +35,10 @@
           v-model="login.password"
         />
       </div>
-      <div class="mb-3 form-check">
+      <!-- <div class="mb-3 form-check">
         <input type="checkbox" class="form-check-input" id="exampleCheck1" />
         <label class="form-check-label" for="exampleCheck1">Check me out</label>
-      </div>
+      </div> -->
       <button type="submit" class="btn btn-primary">Отправить</button>
     </form>
   </div>

@@ -1,25 +1,18 @@
 <template>
   <div>
-
     <!-- Masthead-->
     <header class="masthead">
       <div
-        class="
-          container
-          px-4 px-lg-5
-          d-flex
-          h-100
-          align-items-center
-          justify-content-center
-        "
+        class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center"
       >
         <div class="d-flex justify-content-center">
           <div class="text-center">
-            <h1 class="mx-auto my-0 text-uppercase">
+            <h1 class="mx-auto my-0 text-uppercase fw-bolder mb-5">
               engine <br />
               oil <br />
-              industrial</h1>
-            <h2 class="text-white-50 mx-auto mt-4 mb-5">
+              industrial
+            </h1>
+            <h2 class="text-white-50 mx-auto mt-5 mb-0 fw-bolder">
               Моторные масла в Узбекистане.
             </h2>
             <!-- <a class="btn btn-primary" href="#about">Get Started</a> -->
@@ -32,10 +25,10 @@
       <div class="container px-4 px-lg-5">
         <div class="row gx-4 gx-lg-5 justify-content-center">
           <div class="col-lg-8">
-            <h2 class="text-white mb-4 text-uppercase">
+            <h2 class="text-white mb-4 text-uppercase fw-bolder">
               engine oil industrial
             </h2>
-            <p class="text-white-50">
+            <p class="text-white-50 fw-bolder">
               Использует базовые масла высокой очистки и европейские присадки,
               что позволяет оснащать продукцию Nexxol лучшими международными
               характеристиками, оставаясь при этом доступными по цене. Мы
@@ -65,7 +58,7 @@
               alt="oil-shop"
             />
           </div>
-                    <div class="col-xl-4 col-lg-5">
+          <div class="col-xl-4 col-lg-5">
             <div class="featured-text text-lg-left">
               <h4 class="text-uppercase">Наша продукция</h4>
               <p class="text-black-50 mb-0 text-left">
@@ -87,11 +80,7 @@
         <!-- Project One Row-->
         <div class="row gx-0 mb-5 mb-lg-0 justify-content-center">
           <div class="col-lg-6">
-            <img
-              class="img-fluid"
-              src="assets/img/1.webp"
-              alt="..."
-            />
+            <img class="img-fluid" src="assets/img/1.webp" alt="..." />
           </div>
           <div class="col-lg-6">
             <div class="bg-black text-center h-100 project">
@@ -112,11 +101,7 @@
         <!-- Project Two Row-->
         <div class="row gx-0 justify-content-center">
           <div class="col-lg-6">
-            <img
-              class="img-fluid"
-              src="assets/img/2.webp"
-              alt="..."
-            />
+            <img class="img-fluid" src="assets/img/2.webp" alt="..." />
           </div>
           <div class="col-lg-6 order-lg-first">
             <div class="bg-black text-center h-100 project">
@@ -137,6 +122,11 @@
       </div>
     </section>
     <!-- Contact-->
-    
   </div>
 </template>
+
+<style>
+* {
+  font-weight: bolder !important;
+}
+</style>

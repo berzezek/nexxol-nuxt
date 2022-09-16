@@ -1,6 +1,6 @@
 <template>
   <div id="page-top">
-    <SecondaryHeader />
+    <SecondaryHeader :navLink="navLink"/>
     <!-- <MainHeader /> -->
     <Nuxt />
     <MainFooter />
@@ -9,19 +9,14 @@
 
 <script>
 export default {
-  // data() {
-  //   return {
-  //     some: "ok",
-  //   };
-  // },
-  // created() {
-  //   this.$nuxt.$on("searchProduct", ($event) => this.test($event));
-  // },
-  // methods: {
-  //   test(e) {
-  //     console.log("test ok >>", e);
-  //     this.some = e;
-  //   },
-  // },
+  data() {
+    return {
+      navLink: [
+        {to: '/#about', title: 'О нас'},
+        {to: '#contacts', title: 'Контакты'},
+        {to: '/products', title: 'Продукты'},
+      ]
+    }
+  }
 };
 </script>
