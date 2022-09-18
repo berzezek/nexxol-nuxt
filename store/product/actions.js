@@ -1,8 +1,15 @@
 export default {
-    async fetchCounter({ state }) {
+    async fetchProducts({ commit }) {
       // make request
-      const res = { data: 10 };
-      state.counter = res.data;
-      return res.data;
-    }
+      const products = await this.$axios.$get('product/')
+      // .catch(e => console.log(e));
+      commit('updateProducts', products);
+    },
+    async fetchProduct({ commit }, product_id) {
+      // make request
+      const product = await this.$axios.$get(`product/${product_id}/`)
+      console.log(product);
+      // .catch(e => console.log(e));
+      commit('updateProduct', product);
+    },
   }

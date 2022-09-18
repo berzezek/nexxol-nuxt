@@ -27,12 +27,31 @@
       </div>
       <button type="submit" class="btn btn-primary">Создать</button>
     </form>
-    <p v-for="cat in getCategories" :key="cat.id">{{ cat }}</p>
+    <div class="mt-5">
+      <h3 class="text-center">Существующие категории</h3>
+      <table class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Наименование</th>
+            <th scope="col">Активно</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="category in getAllCategories" :key="category.id">
+            <td>{{ category.name }}</td>
+            <td>
+              <i class="fa-solid fa-check" v-if="category.isActive"></i>
+              <i class="fa-solid fa-xmark" v-else></i>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </template>
 
 <script>
-import { mapActions, mapGetters, mapMutations } from 'vuex'
+import { mapActions, mapGetters } from "vuex";
 export default {
   layout: "dashboard",
   data() {
@@ -45,7 +64,8 @@ export default {
   },
   methods: {
     ...mapActions({
-      fetchCategories: 'category/fetchCategories'
+      fetchCategories: "category/fetchCategories",
+
     }),
     async addCategory() {
       if (this.category.name !== "") {
@@ -75,12 +95,12 @@ export default {
   },
   computed: {
     ...mapGetters({
-      getCategories: 'category/getCategories'
-    })
+      getAllCategories: "category/getAllCategories",
+      getAllProducts: "product/getAllProducts",
+    }),
   },
   mounted() {
     this.fetchCategories();
-    // this.updateCategories();
-  }
+  },
 };
 </script>

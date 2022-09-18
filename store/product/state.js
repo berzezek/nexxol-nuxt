@@ -1,3 +1,5 @@
 export default () => ({
-    counter: 0
+    product: {},
+    products: [],
+    allProducts: []
   })

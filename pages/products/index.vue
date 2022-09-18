@@ -54,20 +54,25 @@ a {
 </style>
 
 <script>
+import { mapActions, mapGetters } from 'vuex';
 export default {
   data() {
     return {
       searchQuery: "",
     };
   },
+  methods: {
+    ...mapActions({
+      fetchProducts: 'product/fetchProducts'
+    }),
 
-  async asyncData({ $axios }) {
-    const products = await $axios.$get(`product/`);
-    return { products };
   },
   computed: {
+    ...mapGetters({
+      getAllProducts: 'product/getAllProducts'
+    }),
     searchProducts() {
-      return this.products.filter((p) =>
+      return this.getAllProducts.filter((p) =>
         p.name.toLowerCase().includes(this.searchQuery.toLowerCase())
       );
     },
@@ -77,5 +82,8 @@ export default {
       title: "Продукты",
     };
   },
+  mounted() {
+    this.fetchProducts();
+  }
 };
 </script>
