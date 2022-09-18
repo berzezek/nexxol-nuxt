@@ -13,7 +13,7 @@
               industrial
             </h1>
             <h2 class="text-white-50 mx-auto mt-5 mb-0 fw-bolder">
-              Моторные масла в Узбекистане.
+              Моторные масла в Узбекистане
             </h2>
             <!-- <a class="btn btn-primary" href="#about">Get Started</a> -->
           </div>

@@ -101,8 +101,8 @@ export default {
     'bootstrap-vue/nuxt',
     'nuxt-izitoast',
     '@nuxtjs/toast',
+    '@nuxtjs/auth-next',
     '@nuxtjs/axios',
-    '@nuxtjs/auth-next'
   ],
 
   izitoast: {
@@ -111,12 +111,17 @@ export default {
     transitionOut: 'fadeOutRight',
   },
 
+  axios: {
+    // baseURL: process.env.BASE_URL || 'http://nexxolapi.cn73530.tmweb.ru/api/v1/', // Used as fallback if no runtime config is provided
+    baseURL: 'http://nexxolapi.cn73530.tmweb.ru/api/v1/', // Used as fallback if no runtime config is provided
+  },
+
   privateRuntimeConfig: {
-    baseUrl: process.env.BASE_URL
+    baseURL: process.env.BASE_URL
   },
 
   publicRuntimeConfig: {
-    baseUrl: 'http://nexxolapi.cn73530.tmweb.ru/api/v1/'
+    baseURL: 'http://nexxolapi.cn73530.tmweb.ru/api/v1/'
   },
 
   auth: {
@@ -134,15 +139,15 @@ export default {
         },
         endpoints: {
           login: {
-            url: 'http://nexxol.uz/api/v1/auth/token/login/',
+            url: 'http://nexxolapi.cn73530.tmweb.ru/api/v1/auth/token/login/',
             method: 'post'
           },
           user: {
-            url: 'http://nexxol.uz/api/v1/auth/users/me/',
+            url: 'http://nexxolapi.cn73530.tmweb.ru/api/v1/auth/users/me/',
             method: 'get'
           },
           logout: {
-            url: 'http://nexxol.uz/api/v1/auth/token/logout/',
+            url: 'http://nexxolapi.cn73530.tmweb.ru/api/v1/auth/token/logout/',
             method: 'post'
           },
           tokenRequired: true,
@@ -155,9 +160,19 @@ export default {
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {},
+  build: {
+    extend(config, ctx) {
+      if (ctx.isDev) {
+        config.devtool = ctx.isClient ? 'source-map' : 'inline-source-map'
+      }
+    }
+  },
 
   router: {
     linkActiveClass: 'active-link'
+  },
+  loading: {
+    color: '#eb5c0e',
+    height: '2px'
   }
 }

@@ -6,18 +6,17 @@
       enctype="multipart/form-data"
       class="border rounded p-5 my-3"
     >
-      <!-- <div class="mb-3">
+      <div class="mb-3">
         <label class="form-label">Категория</label>
         <select
           class="form-select"
           aria-label="Default select example"
-          v-model="product.category"
         >
-          <option selected disabled>Категория</option>
           <option
-            v-for="category in allCategories"
+            v-for="category in categories"
             :key="category.id"
             :value="category.id"
+            :selected="option == product.category.name"
           >
             {{ category.name }}
           </option>
@@ -25,12 +24,13 @@
         <div class="form-text">
           Выберите или добавьте
           <span
-            @click="$router.push({ name: 'category-add' })"
+            @click="$router.push('/dashboard/category/category-add')"
             class="text-primary"
+            style="cursor: pointer"
             >новую</span
           >
         </div>
-      </div> -->
+      </div>
 
       <div class="mb-3">
         <label for="exampleInputName" class="form-label"
@@ -177,20 +177,32 @@
 </template>
 
 <script>
+import {baseUrl} from '@nuxtjs/axios'
 export default {
-  layout: 'dashboard',
-  data() {},
-  async asyncData({ $axios, params, $config: { baseUrl } }) {
-    const product = await $axios.$get(`${baseUrl}product/${params.id}/`);
+  layout: "dashboard",
+  data() {
+    return {
+      categories: [],
+    };
+  },
+  async asyncData({ $axios, params }) {
+    const product = await $axios.$get(`product/${params.id}/`);
     return { product };
   },
   methods: {
+    async getCategory() {
+      const categories = await this.$axios.$get('category/');
+      this.categories = categories;
+    },
     async editProduct() {
-      console.log(this.$route.params.id)
+      console.log(this.$route.params.id);
 
       // await $axios.put(`${baseUrl}product/${this.$route.params.id}`)
-    }
-  }
+    },
+  },
+  mounted() {
+    this.getCategory();
+  },
 };
 </script>
 

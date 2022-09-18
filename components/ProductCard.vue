@@ -33,7 +33,7 @@
           }}</span
           ><span> {{ beautyPrice(product.discount_price) }} сум</span>
         </div>
-        <div v-else>{{ beautyPrice(product.price) }} сум</div>
+        <div v-else><span>{{ beautyPrice(product.price) }} сум</span></div>
       </div>
     </div>
     <!-- Product actions-->
@@ -50,7 +50,6 @@ export default {
   props: {
     product: Object,
   },
-  computed: {},
   methods: {
     beautyPrice(price) {
       return Math.floor(price)

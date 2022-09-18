@@ -93,8 +93,8 @@
 
 <script>
 export default {
-  async asyncData({ $axios, params, $config: { baseUrl } }) {
-    const product = await $axios.$get(`${baseUrl}product/${params.id}/`);
+  async asyncData({ $axios, params }) {
+    const product = await $axios.$get(`product/${params.id}/`);
     return { product };
   },
   methods: {
@@ -115,5 +115,9 @@ export default {
 <style scoped>
 .old-price {
   font-weight: 400;
+}
+
+.btn-outline-dark:hover {
+  background-color: #eb5c0e;
 }
 </style>

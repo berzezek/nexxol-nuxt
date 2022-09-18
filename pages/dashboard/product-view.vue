@@ -1,7 +1,13 @@
 <template>
   <div class="container">
     <h3 class="text-center my-5">Панель управления</h3>
-
+    <b-form-input
+      size="sm"
+      class="mb-5 w-50 search-product"
+      placeholder="Поиск"
+      @submit.prevent
+      v-model="searchQuery"
+    ></b-form-input>
     <table class="table table-striped table-hover">
       <thead>
         <tr>
@@ -13,18 +19,25 @@
       </thead>
       <tbody>
         <tr
-          v-for="product in allProducts"
+          v-for="product in searchProduct"
           :key="product.id"
           @click="
-            $router.push({ path: `/dashboard/product-edit/${product.id}`})
+            $router.push({ path: `/dashboard/product-edit/${product.id}` })
           "
         >
           <td>
-            {{ product.name }}
+            {{ product.name }} - {{ product.product_mark }} / {{ product.unit }}
           </td>
           <td>
             <img
+              v-if="!product.image_1"
               :src="product.get_thumbnail"
+              :alt="product.name"
+              class="img-fluid table-img"
+            />
+            <img
+              v-else
+              :src="product.image_1"
               :alt="product.name"
               class="img-fluid table-img"
             />
@@ -34,7 +47,10 @@
             <i class="fa-solid fa-xmark" v-else></i>
           </td>
           <td>
-            {{ product.price }}
+            <span v-if="product.discount > 0" class="text-primary"
+              >{{ product.discount_price }} (-{{ product.discount }}%)</span
+            >
+            <span v-else>{{ product.price }}</span>
           </td>
         </tr>
       </tbody>
@@ -54,10 +70,26 @@
 <script>
 export default {
   layout: "dashboard",
-  async asyncData({ $axios, $config: { baseUrl } }) {
-    const allProducts = await $axios.$get(`http://nexxol.uz/api/v1/product/`);
-    console.log(allProducts)
+  data() {
+    return {
+      searchQuery: "",
+    };
+  },
+  async asyncData({ $axios }) {
+    const allProducts = await $axios.$get(`product/`);
     return { allProducts };
+  },
+  computed: {
+    searchProduct() {
+      return this.allProducts.filter((p) =>
+        p.name.toLowerCase().includes(this.searchQuery.toLowerCase())
+      );
+    },
+  },
+  head() {
+    return {
+      title: `Dashboard`,
+    };
   },
 };
 </script>

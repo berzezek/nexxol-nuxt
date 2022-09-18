@@ -62,7 +62,6 @@ export default {
           let response = await this.$auth.loginWith("local", {
             data: this.login,
           });
-          console.log(response);
           if (response.status === 200) {
             this.$notify.success({
               title: `${this.$auth.user.username}`,
@@ -88,6 +87,11 @@ export default {
       console.log('logout')
       this.$router.push('/')
     }
+  },
+  head() {
+    return {
+      title: `Dashboard`,
+    };
   },
 };
 </script>

@@ -10,10 +10,15 @@
             placeholder="Поиск"
             @submit.prevent
             v-model="searchQuery"
-            @change="searchProduct"
           ></b-form-input>
           <div
-            class="row gx-4 gx-lg-5 row-cols-1 row-cols-md-3 row-cols-xl-4 justify-content-center"
+            v-if="searchProducts.length"
+            class="
+              row
+              gx-4 gx-lg-5
+              row-cols-1 row-cols-md-3 row-cols-xl-4
+              justify-content-center
+            "
           >
             <div
               class="col mb-5"
@@ -25,6 +30,7 @@
               </NuxtLink>
             </div>
           </div>
+          <div v-else>Ничего не найдено...</div>
         </div>
       </section>
     </div>
@@ -40,6 +46,11 @@ a {
   box-shadow: 10px 5px 0px 0px #aaaaaa;
   transition: 1s;
 }
+
+.product-container {
+  /* background-color: rgb(97, 97, 97); */
+  min-height: 40rem;
+}
 </style>
 
 <script>
@@ -50,20 +61,10 @@ export default {
     };
   },
 
-  async asyncData({ $axios, $config: { baseUrl } }) {
-    const products = await $axios.$get(`${baseUrl}product/`);
+  async asyncData({ $axios }) {
+    const products = await $axios.$get(`product/`);
     return { products };
   },
-  methods: {
-    searchProduct() {
-      return this.products.filter((p) =>
-        p.name.toLowerCase().includes(this.searchQuery.toLowerCase())
-      );
-    },
-  },
-  // mounted() {
-  //   console.log(this.$props.search);
-  // },
   computed: {
     searchProducts() {
       return this.products.filter((p) =>
