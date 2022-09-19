@@ -9,6 +9,7 @@
 import { mapActions, mapGetters } from 'vuex';
 export default {
   layout: "dashboard",
+  name: 'product-add',
   methods: {
     ...mapActions({
       fetchCategories: 'category/fetchCategories'

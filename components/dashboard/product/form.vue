@@ -37,7 +37,7 @@
       <div class="form-text">
         Выберите или добавьте
         <span
-          @click="$router.push('/dashboard/category/category-add')"
+          @click="$router.push('/dashboard/category/add')"
           class="text-primary"
           style="cursor: pointer"
           >новую</span

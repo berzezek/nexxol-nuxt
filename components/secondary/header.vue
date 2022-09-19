@@ -52,7 +52,7 @@
                 ><NuxtLink to="/products">Продукты</NuxtLink></b-nav-item
               > -->
             </b-navbar-nav>
-            <b-nav-form v-if="$route.path === '/dashboard'"> </b-nav-form>
+            <b-nav-form v-if="$route.path === '/dashboard'"> 
             <b-nav-item-dropdown right v-if="$auth.user">
               <!-- Using 'button-content' slot -->
               <template #button-content>
@@ -61,6 +61,7 @@
               <b-dropdown-item>{{ $auth.user.username }}</b-dropdown-item>
               <b-dropdown-item @click="signOut">Выйти</b-dropdown-item>
             </b-nav-item-dropdown>
+            </b-nav-form>
           </b-navbar-nav>
         </b-collapse>
       </div>
@@ -75,6 +76,7 @@ export default {
       searchQuery: "",
     };
   },
+
   props: {
     navLink: Array,
   },

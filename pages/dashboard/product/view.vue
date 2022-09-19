@@ -11,9 +11,15 @@
     <dashboard-product-view :products="searchProducts" />
     <button
       class="btn btn-success me-3"
-      @click="$router.push('product/product-add')"
+      @click="$router.push({ path: '/dashboard/product/add' })"
     >
       Добавить продукт
+    </button>
+    <button
+      class="btn btn-success me-3"
+      @click="$router.push({ path: '/dashboard/category/add' })"
+    >
+      Добавить категорию
     </button>
   </div>
 </template>
@@ -45,5 +51,4 @@ export default {
 };
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

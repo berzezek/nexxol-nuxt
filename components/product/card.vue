@@ -28,25 +28,26 @@
         <h5 class="fw-bolder">{{ product.name }}</h5>
         <!-- Product price-->
         <div v-if="product.discount > 0">
-          <span class="text-muted text-decoration-line-through sm fw-normal">{{
-            beautyPrice(product.price)
-          }}</span
+          <span
+            class="text-muted text-decoration-line-through fw-normal show-discount"
+            >{{ beautyPrice(product.price) }}</span
           ><span> {{ beautyPrice(product.discount_price) }} сум</span>
         </div>
-        <div v-else><span>{{ beautyPrice(product.price) }} сум</span></div>
+        <div v-else>
+          <span>{{ beautyPrice(product.price) }} сум</span>
+        </div>
       </div>
     </div>
-    <!-- Product actions-->
-    <!-- <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-      <div class="text-center">
-        <a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a>
-      </div>
-    </div> -->
   </div>
 </template>
 
 <script>
 export default {
+  data() {
+    return {
+      showDiscount: false,
+    };
+  },
   props: {
     product: Object,
   },
@@ -68,5 +69,10 @@ export default {
 img {
   min-height: 65%;
   max-height: 65%;
+}
+
+.card:hover .show-discount {
+  display: none;
+  transition: 1s;
 }
 </style>

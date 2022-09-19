@@ -5,7 +5,7 @@
       <p>
         Перейти в
         <span
-          ><NuxtLink :to="'/dashboard/product-view'"
+          ><NuxtLink :to="'/dashboard/product/view'"
             >панель управления</NuxtLink
           ></span
         >
@@ -35,10 +35,6 @@
           v-model="login.password"
         />
       </div>
-      <!-- <div class="mb-3 form-check">
-        <input type="checkbox" class="form-check-input" id="exampleCheck1" />
-        <label class="form-check-label" for="exampleCheck1">Check me out</label>
-      </div> -->
       <button type="submit" class="btn btn-primary">Отправить</button>
     </form>
   </div>
@@ -67,7 +63,7 @@ export default {
               title: `${this.$auth.user.username}`,
               message: "Вы успешно авторизовались",
             });
-            this.$router.push("/dashboard/product-view");
+            this.$router.push("/dashboard/product/view");
           }
         } catch (error) {
           this.$izitoast.error({
@@ -84,9 +80,9 @@ export default {
     },
     async userLogout() {
       this.$auth.logout();
-      console.log('logout')
-      this.$router.push('/')
-    }
+      console.log("logout");
+      this.$router.push("/");
+    },
   },
   head() {
     return {

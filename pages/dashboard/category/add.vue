@@ -27,33 +27,14 @@
       </div>
       <button type="submit" class="btn btn-primary">Создать</button>
     </form>
-    <div class="mt-5">
-      <h3 class="text-center">Существующие категории</h3>
-      <table class="table table-striped table-hover">
-        <thead>
-          <tr>
-            <th scope="col">Наименование</th>
-            <th scope="col">Активно</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="category in getAllCategories" :key="category.id">
-            <td>{{ category.name }}</td>
-            <td>
-              <i class="fa-solid fa-check" v-if="category.isActive"></i>
-              <i class="fa-solid fa-xmark" v-else></i>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+    <dashboard-category-view />
   </div>
 </template>
 
 <script>
-import { mapActions, mapGetters } from "vuex";
 export default {
   layout: "dashboard",
+  name: "category-add",
   data() {
     return {
       category: {
@@ -63,10 +44,6 @@ export default {
     };
   },
   methods: {
-    ...mapActions({
-      fetchCategories: "category/fetchCategories",
-
-    }),
     async addCategory() {
       if (this.category.name !== "") {
         try {
@@ -92,15 +69,6 @@ export default {
         });
       }
     },
-  },
-  computed: {
-    ...mapGetters({
-      getAllCategories: "category/getAllCategories",
-      getAllProducts: "product/getAllProducts",
-    }),
-  },
-  mounted() {
-    this.fetchCategories();
   },
 };
 </script>
