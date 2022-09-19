@@ -1,13 +1,13 @@
 <template>
   <form
-    @submit.prevent
+    @submit.prevent="sendProduct"
     enctype="multipart/form-data"
     class="border rounded p-5 my-3"
   >
     <div class="mb-3">
       <label class="form-label">Категория</label>
       <select
-        v-if="product.category.name !== ''"
+        v-if="product.category !== ''"
         class="form-select"
         aria-label="Default select example"
         v-model="product.category.id"
@@ -25,11 +25,13 @@
         v-else
         class="form-select"
         aria-label="Default select example"
+        v-model="newProduct.category"
       >
         <option
           v-for="category in categories"
           :key="category.id"
           :value="category.id"
+          :selected="categories[0].id"
         >
           {{ category.name }}
         </option>
@@ -53,7 +55,7 @@
         class="form-control"
         id="exampleInputName"
         aria-describedby="nameHelp"
-        v-model="product.name"
+        v-model="newProduct.name"
       />
       <div class="form-text">
         Название должно быть уникальным, максимальная длинна 64 символа
@@ -67,7 +69,7 @@
         class="form-control"
         id="description"
         aria-describedby="descriptionHelp"
-        v-model="product.description"
+        v-model="newProduct.description"
       />
       <div class="form-text">Введите описание продукта</div>
     </div>
@@ -78,7 +80,7 @@
         v-if="product.image_1"
       />
       <img
-        :src="product.get_thumbnail"
+        :src="newProduct.get_thumbnail"
         class="img-fluid img-default mb-2"
         v-else
       />
@@ -86,23 +88,24 @@
     </div>
 
     <div class="mb-3">
-      <div v-if="product.image_1">
+      <div v-if="newProduct.image_1">
         <label class="form-label">Главное изображение</label>
 
-        <img :src="product.image_1" class="img-fluid img-default" />
+        <img :src="newProduct.image_1" class="img-fluid img-default" />
       </div>
       <input
         class="form-control"
         type="file"
         accept="image/png, image/jpeg"
         id="image1"
+        @input="image1Upload"
       />
     </div>
     <div class="mb-3">
-      <div v-if="product.image_2">
+      <div v-if="newProduct.image_2">
         <label class="form-label">Дополнительное изображение</label>
 
-        <img :src="product.image_2" class="img-fluid img-default" />
+        <img :src="newPproduct.image_2" class="img-fluid img-default" />
       </div>
 
       <input
@@ -113,10 +116,10 @@
       />
     </div>
     <div class="mb-3">
-      <div v-if="product.image_3">
+      <div v-if="newProduct.image_3">
         <label class="form-label">Дополнительное изображение</label>
 
-        <img :src="product.image_3" class="img-fluid img-default" />
+        <img :src="newProduct.image_3" class="img-fluid img-default" />
       </div>
       <input
         class="form-control"
@@ -133,7 +136,7 @@
         class="form-control"
         id="price"
         aria-describedby="price"
-        v-model="product.price"
+        v-model="newProduct.price"
       />
       <div class="form-text">Цена в UZS</div>
     </div>
@@ -145,7 +148,7 @@
         class="form-control"
         id="discount"
         aria-describedby="discountHelp"
-        v-model="product.discount"
+        v-model="newProduct.discount"
       />
       <div class="form-text">Цена - Цена * скидку - 100 (~ X XXX 900)</div>
     </div>
@@ -157,7 +160,7 @@
         class="form-control"
         id="unit"
         aria-describedby="unitHelp"
-        v-model="product.unit"
+        v-model="newProduct.unit"
       />
       <div class="form-text">Объем упаковки</div>
     </div>
@@ -169,7 +172,7 @@
         class="form-control"
         id="product_mark"
         aria-describedby="product_markHelp"
-        v-model="product.product_mark"
+        v-model="newProduct.product_mark"
       />
       <div class="form-text">Необязательное поле</div>
     </div>
@@ -179,16 +182,16 @@
         type="checkbox"
         class="form-check-input"
         id="isActive"
-        v-model="product.isActive"
+        v-model="newProduct.isActive"
       />
       <label class="form-check-label" for="showInCatalog"
         >Показать на сайте</label
       >
     </div>
 
-    <!-- <button class="btn btn-primary me-3" @click="editProduct">
-        Сохранить
-      </button> -->
+    <button class="btn btn-primary me-3" type="submit">
+      {{ buttonName }}
+    </button>
 
     <button class="btn btn-primary" @click="$router.go(-1)">Назад</button>
   </form>
@@ -198,7 +201,7 @@
 export default {
   data() {
     return {
-      newProduct: {},
+      newProduct: this.$props.product,
     };
   },
   props: {
@@ -207,7 +210,7 @@ export default {
       required: false,
       default() {
         return {
-          category: { id: 0, name: "" },
+          category: {},
           name: "",
           description: "",
           get_thumbnail: "",
@@ -226,12 +229,19 @@ export default {
       type: Array,
       required: false,
     },
+    buttonName: {
+      type: String,
+    },
   },
   methods: {
     sendProduct() {
-      
-    }
-  }
+      this.$nuxt.$emit("sendProduct", this.newProduct);
+    },
+    image1Upload(e) {
+      console.log(e.target.files[0])
+      this.newProduct.image_1 = e.target.files[0];
+    },
+  },
 };
 </script>
 
