@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <dashboard-category-form :category="category" :buttonName="edit"/>
+    <dashboard-category-form :category="category" :buttonName="edit" />
     <dashboard-category-view :categories="getAllCategories" />
   </div>
 </template>
@@ -12,9 +12,9 @@ export default {
   data() {
     return {
       category: {
-        isActive: true
+        isActive: true,
       },
-      edit: "Создать"
+      edit: "Создать",
     };
   },
   created() {

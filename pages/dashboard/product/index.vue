@@ -17,7 +17,7 @@
     </button>
     <button
       class="btn btn-success me-3"
-      @click="$router.push({ path: '/dashboard/category/add' })"
+      @click="$router.push({ path: '/dashboard/category' })"
     >
       Добавить категорию
     </button>
