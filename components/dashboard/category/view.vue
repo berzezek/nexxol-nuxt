@@ -11,13 +11,22 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="category in categories" :key="category.id">
+          <tr
+            v-for="category in categories"
+            :key="`${category.id} + ${category.isActive}`"
+          >
             <td class="">{{ category.name }}</td>
             <td
               class="text-center"
-              @click="changeActive(category.id, category.name, category.isActive)"
+              @click="
+                changeActive(category.id, category.name, category.isActive)
+              "
             >
-              <i :class="category.isActive ? 'fa-solid fa-check': 'fa-solid fa-xmark'"></i>
+              <i
+                :class="
+                  category.isActive ? 'fa-solid fa-check' : 'fa-solid fa-xmark'
+                "
+              ></i>
             </td>
             <td class="text-center">
               <div class="d-flex justify-content-around">
@@ -29,7 +38,9 @@
                 <font-awesome-icon
                   icon="fa-solid fa-pen"
                   class="text-dark"
-                  @click="editCategory(category.id, category.name, category.isActive)"
+                  @click="
+                    editCategory(category.id, category.name, category.isActive)
+                  "
                 />
               </div>
             </td>
