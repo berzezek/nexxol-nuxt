@@ -5,7 +5,7 @@
       <p>
         Перейти в
         <span
-          ><NuxtLink :to="'/dashboard/product/view'"
+          ><NuxtLink :to="'/dashboard/product'"
             >панель управления</NuxtLink
           ></span
         >
@@ -63,7 +63,7 @@ export default {
               title: `${this.$auth.user.username}`,
               message: "Вы успешно авторизовались",
             });
-            this.$router.push("/dashboard/product/view");
+            this.$router.push("/dashboard/product");
           }
         } catch (error) {
           this.$izitoast.error({
