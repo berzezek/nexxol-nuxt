@@ -10,17 +10,12 @@
     </div>
     <!-- Product image-->
     <img
-      v-if="!product.image_1"
+      v-if="!product.image"
       class="card-img-top"
       :src="product.get_thumbnail"
       :alt="product.name"
     />
-    <img
-      v-else
-      class="card-img-top"
-      :src="product.image_1"
-      :alt="product.name"
-    />
+    <img v-else class="card-img-top" :src="product.image" :alt="product.name" />
     <!-- Product details-->
     <div class="card-body p-4">
       <div class="text-center">

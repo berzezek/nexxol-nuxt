@@ -16,18 +16,19 @@
         @click="$router.push({ path: `/dashboard/product/${product.id}` })"
       >
         <td class="text-start">
-          {{ product.name }} - {{ product.product_mark }} / {{ product.unit }}
+          {{ product.name }} - {{ product.product_mark }} /
+          {{ product.get_unit }}
         </td>
         <td>
           <img
-            v-if="!product.image_1"
+            v-if="!product.image"
             :src="product.get_thumbnail"
             :alt="product.name"
             class="img-fluid table-img"
           />
           <img
             v-else
-            :src="product.image_1"
+            :src="product.image"
             :alt="product.name"
             class="img-fluid table-img"
           />

@@ -39,6 +39,7 @@
 <script>
 import { mapActions, mapGetters } from "vuex";
 export default {
+  auth: false,
   name: "products",
   data() {
     return {

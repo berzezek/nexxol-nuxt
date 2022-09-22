@@ -75,9 +75,9 @@
     </div>
     <div>
       <img
-        :src="product.image_1"
+        :src="product.image"
         class="img-fluid img-default mb-2"
-        v-if="product.image_1"
+        v-if="product.image"
       />
       <img
         :src="newProduct.get_thumbnail"
@@ -88,10 +88,10 @@
     </div>
 
     <div class="mb-3">
-      <div v-if="newProduct.image_1">
+      <div v-if="newProduct.image">
         <label class="form-label">Главное изображение</label>
 
-        <img :src="newProduct.image_1" class="img-fluid img-default" />
+        <img :src="newProduct.image" class="img-fluid img-default" />
       </div>
       <input
         class="form-control"
@@ -99,33 +99,6 @@
         accept="image/png, image/jpeg"
         id="image1"
         @input="image1Upload"
-      />
-    </div>
-    <div class="mb-3">
-      <div v-if="newProduct.image_2">
-        <label class="form-label">Дополнительное изображение</label>
-
-        <img :src="newPproduct.image_2" class="img-fluid img-default" />
-      </div>
-
-      <input
-        class="form-control"
-        type="file"
-        accept="image/png, image/jpeg"
-        id="image2"
-      />
-    </div>
-    <div class="mb-3">
-      <div v-if="newProduct.image_3">
-        <label class="form-label">Дополнительное изображение</label>
-
-        <img :src="newProduct.image_3" class="img-fluid img-default" />
-      </div>
-      <input
-        class="form-control"
-        type="file"
-        accept="image/png, image/jpeg"
-        id="image3"
       />
     </div>
 
@@ -154,13 +127,24 @@
     </div>
 
     <div class="mb-3">
+      <label class="form-label">Тара</label>
+      <input
+        type="text"
+        class="form-control"
+        id="tara"
+        v-model="newProduct.tara"
+      />
+      <div class="form-text">Упаковка</div>
+    </div>
+
+    <div class="mb-3">
       <label class="form-label">Объём</label>
       <input
         type="text"
         class="form-control"
-        id="unit"
-        aria-describedby="unitHelp"
-        v-model="newProduct.unit"
+        id="get_unit"
+        aria-describedby="get_unitHelp"
+        v-model="newProduct.get_unit"
       />
       <div class="form-text">Объем упаковки</div>
     </div>
@@ -214,12 +198,11 @@ export default {
           name: "",
           description: "",
           get_thumbnail: "",
-          image_1: "",
-          image_2: "",
-          image_3: "",
+          image: "",
           price: 0,
           discount: 0,
-          unit: "",
+          tara: "",
+          get_unit: "",
           product_mark: "",
           isActive: true,
         };
@@ -238,8 +221,8 @@ export default {
       this.$nuxt.$emit("sendProduct", this.newProduct);
     },
     image1Upload(e) {
-      console.log(e.target.files[0])
-      this.newProduct.image_1 = e.target.files[0];
+      console.log(e.target.files[0]);
+      this.newProduct.image = e.target.files[0];
     },
   },
 };

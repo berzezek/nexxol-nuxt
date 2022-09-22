@@ -4,7 +4,7 @@
       <div class="row gx-4 gx-lg-5 align-items-center">
         <div class="col-md-6">
           <img
-            v-if="!product.image_1"
+            v-if="!product.image"
             class="card-img-top mb-5 mb-md-0"
             :src="product.get_thumbnail"
             :alt="product.name"
@@ -12,7 +12,7 @@
           <img
             v-else
             class="card-img-top mb-5 mb-md-0"
-            :src="product.image_1"
+            :src="product.image"
             :alt="product.name"
           />
         </div>
@@ -29,7 +29,7 @@
             <span class="fw-bolder">-{{ product.discount }}%</span>
           </div>
           <div class="small mb-1">
-            Объём: <span class="fw-bolder">{{ product.unit }}</span>
+            Объём: <span class="fw-bolder">{{ product.get_unit }}</span>
           </div>
           <div class="small mb-3">
             Марка: <span class="fw-bolder">{{ product.product_mark }}</span>

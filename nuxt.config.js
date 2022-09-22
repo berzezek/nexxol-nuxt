@@ -115,8 +115,8 @@ export default {
   },
 
   axios: {
-    // baseURL: process.env.BASE_URL || 'http://nexxolapi.cn73530.tmweb.ru/api/v1/', // Used as fallback if no runtime config is provided
-    baseURL: 'http://nexxolapi.cn73530.tmweb.ru/api/v1/', // Used as fallback if no runtime config is provided
+    baseURL: process.env.BASE_URL || 'http://nexxolapi.cn73530.tmweb.ru/api/v1/', // Used as fallback if no runtime config is provided
+    // baseURL: 'http://nexxolapi.cn73530.tmweb.ru/api/v1/', // Used as fallback if no runtime config is provided
   },
 
   privateRuntimeConfig: {
@@ -142,15 +142,18 @@ export default {
         },
         endpoints: {
           login: {
-            url: 'http://nexxolapi.cn73530.tmweb.ru/api/v1/auth/token/login/',
+            // url: 'http://nexxolapi.cn73530.tmweb.ru/api/v1/auth/token/login/',
+            url: 'http://localhost:8000/api/v1/auth/token/login/',
             method: 'post'
           },
           user: {
-            url: 'http://nexxolapi.cn73530.tmweb.ru/api/v1/auth/users/me/',
+            // url: 'http://nexxolapi.cn73530.tmweb.ru/api/v1/auth/users/me/',
+            url: 'http://localhost:8000/api/v1/auth/users/me/',
             method: 'get'
           },
           logout: {
-            url: 'http://nexxolapi.cn73530.tmweb.ru/api/v1/auth/token/logout/',
+            // url: 'http://nexxolapi.cn73530.tmweb.ru/api/v1/auth/token/logout/',
+            url: 'http://localhost:8000/api/v1/auth/token/logout/',
             method: 'post'
           },
           tokenRequired: true,
@@ -172,7 +175,8 @@ export default {
   },
 
   router: {
-    linkActiveClass: 'active-link'
+    linkActiveClass: 'active-link', 
+      // middleware: ['auth']
   },
   loading: {
     color: '#eb5c0e',
