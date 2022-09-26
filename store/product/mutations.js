@@ -6,5 +6,5 @@ export default {
     },
     updateProduct(state, val) {
       state.product = val;
-    }
+    },
   }

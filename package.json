@@ -17,6 +17,7 @@
     "@nuxtjs/toast": "^3.3.1",
     "bootstrap-vue": "^2.22.0",
     "core-js": "^3.19.3",
+    "form-data": "^4.0.0",
     "nuxt": "^2.15.8",
     "nuxt-izitoast": "^1.0.0",
     "vue": "^2.6.14",

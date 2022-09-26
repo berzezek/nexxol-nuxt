@@ -156,7 +156,7 @@ export default {
             url: 'http://localhost:8000/api/v1/auth/token/logout/',
             method: 'post'
           },
-          tokenRequired: true,
+          tokenRequired: false,
           tokenType: 'Token',
           tokenName: 'Authorization'
 

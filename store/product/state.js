@@ -1,5 +1,5 @@
 export default () => ({
     product: {},
     products: [],
-    allProducts: []
+    allProducts: [],
   })

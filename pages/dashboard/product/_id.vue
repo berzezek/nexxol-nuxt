@@ -1,10 +1,10 @@
 <template>
   <div class="container">
-    <h3 class="text-center mt-5">Изменить продукт {{ product.name }}</h3>
     <dashboard-product-form
       :product="product"
       :categories="getAllCategories"
       :buttonName="'Изменить'"
+      :formName="`Изменить продукт - ${product.name}`"
     />
   </div>
 </template>
@@ -14,7 +14,8 @@ import { mapActions, mapGetters } from "vuex";
 export default {
   layout: "dashboard",
   created() {
-    this.$nuxt.$on("sendProduct", ($event) => this.sendProduct($event));
+    // this.$nuxt.$on("sendProduct", ($event) => this.sendProduct($event));
+    this.$nuxt.$on("selectFile", ($event) => this.updateFile($event));
   },
 
   async asyncData({ $axios, params }) {
@@ -29,10 +30,12 @@ export default {
     async editProduct() {
       console.log(this.$route.params.id);
     },
-
-    sendProduct(e) {
-      console.log(e);
+    updateFile(e) {
+      console.log(e)
     },
+    // sendProduct(e) {
+    //   console.log(e);
+    // },
   },
   computed: {
     ...mapGetters({
