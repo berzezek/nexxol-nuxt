@@ -33,19 +33,15 @@ export default {
       for (let i = 0; i < keys.length; i++) {
         this.formData.append(keys[i], values[i]);
       };
-   
-      await this.$axios.$post("product/", this.formdata);
-      // await this.$axios.$post("product/", {
-      //   "category": 1,
-      //   "name": "Exam",
-      //   "price": 100
-      // });
+      await this.$axios.$post("product/", this.formData);
+
       this.$notify.success({
-        title: "OK",
+        title: "Все в порядке",
+        message: "Продукт успешно добавлен",
       });
     },
-    selectFile(e) {
-      this.formData.append("image", e, e.name);
+    selectFile(file) {
+      this.formData.append("image", file, file.name);
     },
   },
   computed: {

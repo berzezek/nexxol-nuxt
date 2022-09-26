@@ -10,35 +10,71 @@
     ></b-form-input>
     <dashboard-product-view :products="searchProducts" />
     <button
-      class="btn btn-success me-3"
-      @click="$router.push({ path: '/dashboard/product/add' })"
-    >
-      Добавить продукт
-    </button>
-    <button
-      class="btn btn-success me-3"
+      class="btn-sm btn-warning me-3"
       @click="$router.push({ path: '/dashboard/category' })"
     >
       Добавить категорию
+    </button>
+    <button
+      class="btn-sm btn-success me-3"
+      @click="$router.push({ path: '/dashboard/product/add' })"
+    >
+      Добавить продукт
     </button>
   </div>
 </template>
 
 <script>
+import { mapActions, mapGetters } from "vuex";
 export default {
   layout: "dashboard",
+  created() {
+    this.$nuxt.$on("deleteProduct", ($event) => this.deleteProduct($event));
+  },
   data() {
     return {
       searchQuery: "",
     };
   },
-  async asyncData({ $axios }) {
-    const allProducts = await $axios.$get(`product/`);
-    return { allProducts };
+  methods: {
+    ...mapActions({
+      fetchProducts: "product/fetchProducts",
+    }),
+    deleteProduct(id) {
+      this.$izitoast.error({
+        title: `Внимание`,
+        message: "Желаете удалить продукт?",
+        position: "center",
+        buttons: [
+          [
+            "<button>Да</button>",
+            async () => {
+              await this.$axios.$delete(`product-delete/${id}/`);
+              this.$izitoast.destroy();
+              await this.fetchProducts();
+              this.$izitoast.success({
+                title: `Внимание`,
+                message: `Продукт успешно удален`,
+              });
+            },
+            true,
+          ],
+          [
+            "<button>Нет</button>",
+            () => {
+              this.$izitoast.destroy();
+            },
+          ],
+        ],
+      });
+    }
   },
   computed: {
+    ...mapGetters({
+      getProducts: "product/getProducts",
+    }),
     searchProducts() {
-      return this.allProducts.filter((p) =>
+      return this.getProducts.filter((p) =>
         p.name.toLowerCase().includes(this.searchQuery.toLowerCase())
       );
     },
@@ -48,6 +84,9 @@ export default {
       title: `Dashboard`,
     };
   },
+  mounted() {
+    this.fetchProducts();
+  }
 };
 </script>
 
