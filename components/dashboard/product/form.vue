@@ -9,27 +9,12 @@
       <div class="mb-3">
         <label class="form-label">Категория</label>
         <select
-          v-if="product.category !== ''"
           class="form-select"
           aria-label="Default select example"
-          v-model="product.category"
+          v-model="newProduct.category.id"
         >
           <option
-            v-for="category in categories"
-            :key="category.id"
-            :value="category.id"
-          >
-            {{ category.name }}
-          </option>
-        </select>
-        <select
-          v-else
-          class="form-select"
-          aria-label="Default select example"
-          v-model="newProduct.category"
-        >
-          <option
-            v-for="category in categories"
+            v-for="category in getAllCategories"
             :key="category.id"
             :value="category.id"
           >
@@ -77,9 +62,9 @@
       </div>
       <div>
         <img
-          :src="product.image"
+          v-if="newProduct.image"
+          :src="newProduct.image"
           class="img-fluid img-default mb-2"
-          v-if="product.image"
         />
         <img
           :src="newProduct.get_thumbnail"
@@ -95,21 +80,14 @@
 
           <img :src="newProduct.image" class="img-fluid img-default" />
         </div>
-        <!-- <input
-          class="form-control"
-          type="file"
-          accept="image/png, image/jpeg"
-          id="image"
-          @input="imageUpload"
-          placeholder="Выберите файл"
-        /> -->
+
         <dashboard-product-image />
       </div>
 
       <div class="mb-3">
         <label for="price" class="form-label">Цена за единицу</label>
         <input
-          type="numer"
+          type="number"
           class="form-control"
           id="price"
           aria-describedby="price"
@@ -178,46 +156,36 @@
         >
       </div>
 
-      <button class="btn btn-primary me-3" type="submit">
+      <button class="btn-sm btn-primary me-3" type="submit">
         {{ buttonName }}
       </button>
 
-      <button class="btn btn-primary" @click="$router.go(-1)">Назад</button>
+      <button class="btn-sm btn-primary" @click="$router.push({path: '/dashboard/product'})">Назад</button>
     </form>
   </div>
 </template>
 
 <script>
+import { mapActions, mapGetters} from "vuex";
+
 export default {
   data() {
     return {
-      newProduct: this.$props.product,
+      newProduct: {
+        name: "",
+        description: "",
+        image: "",
+        price: 0,
+        discount: 0,
+        unit: "",
+        tara: "",
+        product_mark: "",
+        isActive: true,
+        category: {id: 1},
+      },
     };
   },
   props: {
-    product: {
-      type: Object,
-      required: false,
-      default() {
-        return {
-          name: "",
-          category: 1,
-          description: "",
-          get_thumbnail: "",
-          image: "",
-          price: 0,
-          discount: 0,
-          tara: "other",
-          unit: "",
-          product_mark: "",
-          isActive: true,
-        };
-      },
-    },
-    categories: {
-      type: Array,
-      required: false,
-    },
     buttonName: {
       type: String,
     },
@@ -226,19 +194,35 @@ export default {
     },
   },
   methods: {
+    ...mapActions({
+      fetchCategories: "category/fetchCategories",
+      fetchProduct: "product/fetchProduct",
+    }),
     sendProduct() {
       this.$nuxt.$emit("sendProduct", this.newProduct);
     },
-    imageUpload(e) {
-      console.log(e.target.files[0]);
-      this.newProduct.image = e.target.files[0];
-    },
   },
+  computed: {
+    ...mapGetters({
+      getAllCategories: "category/getAllCategories",
+      getProduct: "product/getProduct",
+    }),
+  },
+  async mounted() {
+    await this.fetchCategories();
+    try {
+      await this.fetchProduct(this.$route.params.id);
+      if (typeof this.getProduct !== "string") {
+        this.newProduct = this.getProduct;
+      }
+    } catch (e) {
+    }
+  }
 };
 </script>
 
 <style scoped>
-.img-default {
-  width: 20%;
-}
+  .img-default {
+    width: 20%;
+  }
 </style>

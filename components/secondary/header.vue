@@ -52,7 +52,7 @@
                 ><NuxtLink to="/products">Продукты</NuxtLink></b-nav-item
               > -->
             </b-navbar-nav>
-            <b-nav-form v-if="$route.path === '/dashboard'"> 
+            <b-nav-form v-if="$route.path === '/dashboard'">
             <b-nav-item-dropdown right v-if="$auth.user">
               <!-- Using 'button-content' slot -->
               <template #button-content>
@@ -98,7 +98,7 @@ export default {
 
 <style scoped>
 .header {
-  background-color: rgba(255, 255, 255, 0.6);
+  background-color: rgba(255, 255, 255, 0.8);
   position: fixed;
   top: 0;
   z-index: 100;
