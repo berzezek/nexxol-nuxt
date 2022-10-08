@@ -16,6 +16,7 @@
               aria-label="Выбрать категорию"
               v-model="category"
             >
+              <option selected value="">Выберите категорию</option>
               <option v-for="category in getCategories" :key="category.id" :value="category.id">
                 {{ category.name }}
               </option>
