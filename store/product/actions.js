@@ -1,15 +1,16 @@
 export default {
     async fetchProducts({ commit }) {
-      // make request
       const products = await this.$axios.$get('product/')
-      // .catch(e => console.log(e));
-      commit('updateProducts', products);
+      commit('updateProducts', products.result);
+      commit('updateCount', products.count);
+      commit('updatePageCount', products.page_count);
     },
     async fetchProduct({ commit }, product_id) {
-      // make request
       const product = await this.$axios.$get(`product/${product_id}/`)
-      console.log(product);
-      // .catch(e => console.log(e));
       commit('updateProduct', product);
+    },
+    async fetchProductPost({ commit }, product_id) {
+      const productPost = await this.$axios.$get(`product-post/${product_id}/`)
+      commit('updateProductPost', productPost);
     },
   }

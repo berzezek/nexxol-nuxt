@@ -21,6 +21,12 @@
     >
       Добавить продукт
     </button>
+    <button
+      class="btn-sm btn-primary me-3"
+      @click="$router.push({ path: '/' })"
+    >
+      На главную
+    </button>
   </div>
 </template>
 
@@ -49,7 +55,7 @@ export default {
           [
             "<button>Да</button>",
             async () => {
-              await this.$axios.$delete(`product-delete/${id}/`);
+              await this.$axios.$delete(`product/${id}/`);
               this.$izitoast.destroy();
               await this.fetchProducts();
               this.$izitoast.success({

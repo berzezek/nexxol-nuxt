@@ -1,7 +1,6 @@
 <template>
   <div class="container">
     <dashboard-product-form
-      :categories="getAllCategories"
       :buttonName="'Добавить'"
       :formName="'Добавить продукт'"
     />
@@ -9,7 +8,6 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from "vuex";
 import FormData from 'form-data';
 export default {
   layout: "dashboard",
@@ -24,14 +22,13 @@ export default {
     this.$nuxt.$on("selectFile", ($event) => this.selectFile($event));
   },
   methods: {
-    ...mapActions({
-      fetchCategories: "category/fetchCategories",
-    }),
     async sendProduct(e) {
       const keys = Object.keys(e);
       const values = Object.values(e);
       for (let i = 0; i < keys.length; i++) {
-        this.formData.append(keys[i], values[i]);
+        if (values[i]) {
+          this.formData.append(keys[i], values[i]);
+        }
       };
       await this.$axios.$post("product/", this.formData);
 
@@ -39,18 +36,11 @@ export default {
         title: "Все в порядке",
         message: "Продукт успешно добавлен",
       });
+      this.formData = new FormData();
     },
     selectFile(file) {
       this.formData.append("image", file, file.name);
     },
-  },
-  computed: {
-    ...mapGetters({
-      getAllCategories: "category/getAllCategories",
-    }),
-  },
-  mounted() {
-    this.fetchCategories();
   },
 };
 </script>

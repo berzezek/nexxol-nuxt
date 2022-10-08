@@ -62,7 +62,6 @@ export default {
   transition: 1s;
 }
 img {
-  min-height: 65%;
   max-height: 65%;
 }
 
