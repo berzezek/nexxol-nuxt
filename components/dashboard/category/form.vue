@@ -25,27 +25,21 @@
         />
         <label class="form-check-label" for="exampleCheck1">Активно</label>
       </div>
-      <button @click="addCategory" class="btn btn-primary">Создать</button>
-      <button @click="editActiveCategory" class="btn btn-primary">Изменить</button>
+      <button @click="addCategory" class="btn-sm btn-primary">Создать</button>
+      <button @click="editActiveCategory" class="btn-sm btn-primary">Изменить</button>
+      <button @click="$router.go(-1)" class="btn-sm btn-primary">Назад</button>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  data() {
-    return {
-      // category: {
-      //   name: "",
-      //   isActive: true,
-      // },
-    };
-  },
+
   props: {
     category: {
       type: Object,
       required: false
-    }, 
+    },
   },
   methods: {
     async addCategory() {

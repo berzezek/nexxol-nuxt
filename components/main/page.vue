@@ -7,15 +7,16 @@
       >
         <div class="d-flex justify-content-center">
           <div class="text-center">
+
             <h1 class="mx-auto my-0 text-uppercase fw-bolder mb-5">
-              engine <br />
-              oil <br />
+              engine <br/>
+              oil <br/>
               industrial
             </h1>
             <h2 class="text-white-50 mx-auto mt-5 mb-0 fw-bolder">
               Моторные масла в Узбекистане
             </h2>
-            <!-- <a class="btn btn-primary" href="#about">Get Started</a> -->
+<!--            <a class="btn btn-primary" href="#about">Get Started</a>-->
           </div>
         </div>
       </div>
@@ -63,10 +64,10 @@
               <h4 class="text-uppercase">Наша продукция</h4>
               <p class="text-black-50 mb-0 text-left">
                 Продукция, которая гарантирует качество и уход за двигателем.
-                <br /><br />Моторные масла семейства Nexxol имеют формулу,
+                <br/><br/>Моторные масла семейства Nexxol имеют формулу,
                 идеально соответствующую потребностям вашего автомобиля.
-                <br /><br />Ознакомьтесь с нашим широким ассортиментом, чтобы
-                найти лучшее моторное масло для вашего автомобиля.<br /><br />
+                <br/><br/>Ознакомьтесь с нашим широким ассортиментом, чтобы
+                найти лучшее моторное масло для вашего автомобиля.<br/><br/>
 
                 Одним из приоритетов
                 <span class="text-uppercase">engine oil industrial</span>
@@ -80,7 +81,7 @@
         <!-- Project One Row-->
         <div class="row gx-0 mb-5 mb-lg-0 justify-content-center">
           <div class="col-lg-6">
-            <img class="img-fluid" src="assets/img/1.webp" alt="..." />
+            <img class="img-fluid" src="assets/img/1.webp" alt="..."/>
           </div>
           <div class="col-lg-6">
             <div class="bg-black text-center h-100 project">
@@ -92,7 +93,7 @@
                   <p class="mb-0 text-white-50">
                     Лучшее соотношение цены и качества.
                   </p>
-                  <hr class="d-none d-lg-block mb-0 ms-0" />
+                  <hr class="d-none d-lg-block mb-0 ms-0"/>
                 </div>
               </div>
             </div>
@@ -101,7 +102,7 @@
         <!-- Project Two Row-->
         <div class="row gx-0 justify-content-center">
           <div class="col-lg-6">
-            <img class="img-fluid" src="assets/img/2.webp" alt="..." />
+            <img class="img-fluid" src="assets/img/2.webp" alt="..."/>
           </div>
           <div class="col-lg-6 order-lg-first">
             <div class="bg-black text-center h-100 project">
@@ -113,7 +114,7 @@
                   <p class="mb-0 text-white-50">
                     Наша продукция обладает высокими качествами.
                   </p>
-                  <hr class="d-none d-lg-block mb-0 me-0" />
+                  <hr class="d-none d-lg-block mb-0 me-0"/>
                 </div>
               </div>
             </div>

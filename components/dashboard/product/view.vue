@@ -38,8 +38,8 @@
         {{ product.category.name }}
       </td>
       <td>
-        <i class="fa-solid fa-check" v-if="product.isActive"></i>
-        <i class="fa-solid fa-xmark" v-else></i>
+        <em v-if="product.isActive" class="fa-solid fa-check"></em>
+        <em v-else class="fa-solid fa-xmark"></em>
       </td>
       <td class="text-end">
           <span v-if="product.discount > 0"
@@ -65,14 +65,11 @@
 </template>
 
 <script>
-import {mapActions, mapGetters} from "vuex";
-
 export default {
   props: {
     products: Array,
   },
   methods: {
-    ...mapActions({fetchProducts: 'product/fetchProducts'}),
     deleteProduct(e) {
       this.$nuxt.$emit("deleteProduct", e);
     }

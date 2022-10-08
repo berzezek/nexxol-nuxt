@@ -11,10 +11,10 @@
         <select
           class="form-select"
           aria-label="Default select example"
-          v-model="newProduct.category.id"
+          v-model="newProduct.category"
         >
           <option
-            v-for="category in getAllCategories"
+            v-for="category in getCategories"
             :key="category.id"
             :value="category.id"
           >
@@ -27,14 +27,14 @@
             @click="$router.push('/dashboard/category/add')"
             class="text-primary"
             style="cursor: pointer"
-            >новую</span
+          >новую</span
           >
         </div>
       </div>
 
       <div class="mb-3">
         <label for="exampleInputName" class="form-label"
-          >Название продукта</label
+        >Название продукта</label
         >
         <input
           type="text"
@@ -60,14 +60,16 @@
         />
         <div class="form-text">Введите описание продукта</div>
       </div>
-      <div>
+      <div v-if="buttonName !== 'Изменить'">
         <img
-          v-if="newProduct.image"
           :src="newProduct.image"
+          :alt="newProduct.name"
           class="img-fluid img-default mb-2"
+          v-if="newProduct.image"
         />
         <img
           :src="newProduct.get_thumbnail"
+          :alt="newProduct.name"
           class="img-fluid img-default mb-2"
           v-else
         />
@@ -78,10 +80,9 @@
         <div v-if="newProduct.image">
           <label class="form-label">Главное изображение</label>
 
-          <img :src="newProduct.image" class="img-fluid img-default" />
+          <img :src="newProduct.image" class="img-fluid img-default" :alt="newProduct.name"/>
         </div>
-
-        <dashboard-product-image />
+        <dashboard-product-image/>
       </div>
 
       <div class="mb-3">
@@ -108,7 +109,18 @@
         <div class="form-text">Цена - Цена * скидку - 100 (~ X XXX 900)</div>
       </div>
 
+
       <div class="mb-3">
+        <label class="form-label">Упаковка</label>
+        <select class="form-select" aria-label="Default select example" v-model="newProduct.tara">
+          <option value="other" selected>Другое</option>
+          <option value="kanister">Канистра</option>
+          <option value="barrel">Бочка</option>
+        </select>
+        <div class="form-text">Бочка 200, Канистра 20... Изображение - автоматически</div>
+      </div>
+
+      <div class="mb-3" v-if="newProduct.tara === 'other'">
         <label class="form-label">Объём</label>
         <input
           type="text"
@@ -121,24 +133,12 @@
       </div>
 
       <div class="mb-3">
-        <label class="form-label">Упаковка</label>
+        <label for="newProduct_mark" class="form-label">Артикул</label>
         <input
           type="text"
           class="form-control"
-          id="tara"
-          aria-describedby="taraHelp"
-          v-model="newProduct.tara"
-        />
-        <div class="form-text">Упаковка по умолчанию</div>
-      </div>
-
-      <div class="mb-3">
-        <label for="product_mark" class="form-label">Артикул</label>
-        <input
-          type="text"
-          class="form-control"
-          id="product_mark"
-          aria-describedby="product_markHelp"
+          id="newProduct_mark"
+          aria-describedby="newProduct_markHelp"
           v-model="newProduct.product_mark"
         />
         <div class="form-text">Необязательное поле</div>
@@ -152,7 +152,7 @@
           v-model="newProduct.isActive"
         />
         <label class="form-check-label" for="showInCatalog"
-          >Показать на сайте</label
+        >Показать на сайте</label
         >
       </div>
 
@@ -160,28 +160,29 @@
         {{ buttonName }}
       </button>
 
-      <button class="btn-sm btn-primary" @click="$router.push({path: '/dashboard/product'})">Назад</button>
+      <button class="btn-sm btn-info" @click="$router.push({ path: '/dashboard/product' })">Назад</button>
     </form>
   </div>
 </template>
 
 <script>
-import { mapActions, mapGetters} from "vuex";
+import {mapGetters, mapActions} from "vuex";
 
 export default {
+
   data() {
     return {
       newProduct: {
-        name: "",
-        description: "",
-        image: "",
+        name: '',
+        description: '',
+        image: null,
         price: 0,
-        discount: 0,
-        unit: "",
-        tara: "",
-        product_mark: "",
+        discount: '',
+        tara: 'other',
+        unit: '',
+        product_mark: '',
         isActive: true,
-        category: {id: 1},
+        category: 1,
       },
     };
   },
@@ -195,27 +196,25 @@ export default {
   },
   methods: {
     ...mapActions({
+      fetchProductPost: "product/fetchProductPost",
       fetchCategories: "category/fetchCategories",
-      fetchProduct: "product/fetchProduct",
     }),
     sendProduct() {
       this.$nuxt.$emit("sendProduct", this.newProduct);
-    },
+    }
   },
   computed: {
     ...mapGetters({
-      getAllCategories: "category/getAllCategories",
-      getProduct: "product/getProduct",
+      getProductPost: "product/getProductPost",
+      getCategories: "category/getCategories"
     }),
+
   },
   async mounted() {
     await this.fetchCategories();
-    try {
-      await this.fetchProduct(this.$route.params.id);
-      if (typeof this.getProduct !== "string") {
-        this.newProduct = this.getProduct;
-      }
-    } catch (e) {
+    if (this.formName === "Изменить продукт") {
+      await this.fetchProductPost(this.$route.params.id);
+      this.newProduct = {...this.getProductPost};
     }
   }
 };

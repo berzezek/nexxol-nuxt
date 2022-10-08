@@ -1,6 +1,6 @@
 <template>
-  <section class="py-5">
-    <div class="container px-4 px-lg-5 my-5">
+  <section class="py-5 container">
+    <div class="px-lg-5 my-5 rounded p-3 product-card bg-light">
       <div class="row gx-4 gx-lg-5 align-items-center">
         <div class="col-md-6">
           <img
@@ -77,7 +77,16 @@ export default {
 </script>
 
 <style scoped>
-.btn-outline-dark:hover {
-  background-color: #eb5c0e;
+
+.product-card {
+  opacity: 0.9;
 }
+
+.product-card:hover {
+  opacity: 1;
+  transition: 1s;
+}
+
+
+
 </style>
