@@ -12,13 +12,9 @@ import FormData from 'form-data';
 export default {
   layout: "dashboard",
   name: "product-add",
-  data() {
-    return {
-      formData: new FormData(),
-    };
-  },
+  mixins: [addOrEditProduct],
   created() {
-    this.$nuxt.$on("sendProduct", ($event) => this.sendProduct($event));
+    this.$nuxt.$on("sendProduct", ($event) => this.addOrEditProduct($event));
     this.$nuxt.$on("selectFile", ($event) => this.selectFile($event));
   },
   methods: {
@@ -38,6 +34,7 @@ export default {
       });
       this.formData = new FormData();
     },
+
     selectFile(file) {
       this.formData.append("image", file, file.name);
     },

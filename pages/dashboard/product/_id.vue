@@ -9,6 +9,7 @@
 
 <script>
 import FormData from 'form-data';
+
 export default {
   data() {
     return {
@@ -16,6 +17,7 @@ export default {
     };
   },
   layout: "dashboard",
+  mixins: [addOrEditProduct],
   created() {
     this.$nuxt.$on("sendProduct", ($event) => this.editProduct($event));
     this.$nuxt.$on("selectFile", ($event) => this.updateFile($event));
@@ -41,6 +43,7 @@ export default {
         this.formData.append("image", file, file.name);
       }
     },
+
   }
 };
 </script>

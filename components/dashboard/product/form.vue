@@ -88,7 +88,7 @@
       <div class="mb-3">
         <label for="price" class="form-label">Цена за единицу</label>
         <input
-          type="numer"
+          type="number"
           class="form-control"
           id="price"
           aria-describedby="price"
@@ -221,7 +221,7 @@ export default {
 </script>
 
 <style scoped>
-.img-default {
-  width: 20%;
-}
+  .img-default {
+    width: 20%;
+  }
 </style>
